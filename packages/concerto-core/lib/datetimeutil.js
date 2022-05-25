@@ -35,9 +35,6 @@ function setCurrentTime(currentTime, utcOffset) {
     // Default UTC offset to local time
     const utcOffsetResolved = typeof utcOffset === 'number' ? utcOffset : dayjs().utcOffset();
     const currentTimeUTC = currentTime ? dayjs.utc(currentTime) : dayjs().utc();
-    if (!currentTimeUTC.isValid()) {
-        throw new Error(`Current time provided '${currentTime}' is not in standard UTC format`);
-    }
     const currentTimeResolved = currentTimeUTC.utcOffset(utcOffsetResolved);
     if (!currentTimeResolved.isValid()) {
         throw new Error(`Cannot set current time to '${currentTime}' with UTC offset '${utcOffset}'`);
